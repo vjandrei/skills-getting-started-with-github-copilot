@@ -63,6 +63,8 @@ section h3 {
   border: 1px solid #ddd;
   border-radius: 5px;
   background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
 }
 
 .activity-card h4 {
@@ -72,6 +74,83 @@ section h3 {
 
 .activity-card p {
   margin-bottom: 8px;
+}
+
+/* Participants section in the activity card */
+.participants-section {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.participants-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #333;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.participants-count {
+  background: linear-gradient(90deg,#e8f0fe,#f0f4ff);
+  color: #1a237e;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  border: 1px solid rgba(26,35,126,0.08);
+}
+
+/* Clean list and little avatars */
+.participants-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.participant-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #ffffff;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #f0f0f0;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.03);
+  font-size: 14px;
+  color: #222;
+}
+
+/* Avatar with initials */
+.participant-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3949ab, #1a237e);
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 12px;
+  flex-shrink: 0;
+  border: 2px solid rgba(255,255,255,0.08);
+}
+
+/* empty placeholder */
+.participants-empty {
+  color: #666;
+  font-size: 13px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: #fbfbfb;
+  border: 1px dashed #eee;
 }
 
 .form-group {
