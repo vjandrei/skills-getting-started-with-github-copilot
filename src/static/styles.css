@@ -105,13 +105,18 @@ section h3 {
 }
 
 /* Clean list and little avatars */
+/* Hide bullet points for participants list */
 .participants-list {
-  list-style: none;
+  list-style: none !important;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+
+.participants-list li {
+  list-style-type: none !important;
 }
 
 .participant-item {

@@ -81,8 +81,44 @@ document.addEventListener("DOMContentLoaded", () => {
             const nameSpan = document.createElement("span");
             nameSpan.textContent = displayName || p;
 
+
+            // Delete icon button
+            const deleteBtn = document.createElement("button");
+            deleteBtn.className = "participant-delete-btn";
+            deleteBtn.title = "Remove participant";
+            deleteBtn.innerHTML = "&#128465;"; // Trash can icon
+            deleteBtn.style.marginLeft = "auto";
+            deleteBtn.style.background = "none";
+            deleteBtn.style.border = "none";
+            deleteBtn.style.color = "#c62828";
+            deleteBtn.style.fontSize = "18px";
+            deleteBtn.style.cursor = "pointer";
+            deleteBtn.style.padding = "4px 8px";
+
+            // Add click handler to unregister participant
+            deleteBtn.addEventListener("click", async (e) => {
+              e.stopPropagation();
+              if (!confirm(`Remove ${p} from ${name}?`)) return;
+              try {
+                const response = await fetch(
+                  `/activities/${encodeURIComponent(name)}/unregister?email=${encodeURIComponent(p)}`,
+                  { method: "POST" }
+                );
+                const result = await response.json();
+                if (response.ok) {
+                  // Refresh activities list
+                  fetchActivities();
+                } else {
+                  alert(result.detail || "Failed to unregister participant.");
+                }
+              } catch (error) {
+                alert("Failed to unregister participant. Please try again.");
+              }
+            });
+
             li.appendChild(avatar);
             li.appendChild(nameSpan);
+            li.appendChild(deleteBtn);
             ul.appendChild(li);
           });
 
@@ -131,6 +167,8 @@ document.addEventListener("DOMContentLoaded", () => {
         messageDiv.textContent = result.message;
         messageDiv.className = "success";
         signupForm.reset();
+        // Refresh activities so the new participant appears immediately
+        fetchActivities();
       } else {
         messageDiv.textContent = result.detail || "An error occurred";
         messageDiv.className = "error";
